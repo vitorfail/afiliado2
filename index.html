@@ -560,34 +560,5 @@
             </div>
         </div>
     </div>
-    <script>
-        // Animação para o contador (opcional)
-        function animateCountdown() {
-            const items = document.querySelectorAll('.countdown-item');
-            let count = 0;
-            
-            const interval = setInterval(() => {
-                if (count >= 10) {
-                    clearInterval(interval);
-                    return;
-                }
-                
-                items.forEach(item => {
-                    item.style.transform = 'scale(1.1)';
-                    setTimeout(() => {
-                        item.style.transform = 'scale(1)';
-                    }, 200);
-                });
-                
-                count++;
-            }, 2000);
-        }
-        
-        // Inicia a animação quando a página carrega
-        window.addEventListener('load', animateCountdown);
-        
-        // Efeito de flutuação para o ícone do troféu
-
-    </script>
 </body>
 </html>
