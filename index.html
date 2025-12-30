@@ -152,8 +152,9 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: var(--text);
             line-height: 1.6;
-            min-height: 100vh;
+            height: 100%;
             width: 100%;
+            position: absolute;
         }
         
         .container {
@@ -163,7 +164,8 @@
             width: 70%;
             display: flex;
             flex-direction: column;
-            position: relative;
+            position: absolute;
+            margin: 5% 15%;
             animation: fadeIn 0.8s ease-out;
         }
         
@@ -189,6 +191,7 @@
             aspect-ratio: auto;
             z-index: 1;
         }
+        
         .hero-image #img {
             background: url(logo.gif); 
             background-size: 100% 100%;
