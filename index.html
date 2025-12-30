@@ -161,7 +161,6 @@
             background: var(--white);
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
             width: 70%;
             display: flex;
             flex-direction: column;
@@ -192,28 +191,6 @@
             aspect-ratio: auto;
             z-index: 1;
         }
-        .content::before {
-            content: "";
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-        
-        .content::after {
-            content: "";
-            position: absolute;
-            bottom: -80px;
-            left: -80px;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-        
         .hero-image #img {
             background: url(logo.gif); 
             background-size: 100% 100%;
