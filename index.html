@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1500250984544663');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1500250984544663&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥Entre na Vupi</title>
+     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      
+      fbq('init', '2196562264137427'); // Substitua pelo seu ID
+      fbq('track', 'PageView');
+    </script>
+    <style>
+        :root {
+            --primary: #501aff;
+            --secondary: #dc2424;
+            --dark: #B8A3FF;
+            --light: #f8d3c6;
+            --accent: #FFD700;
+            --text: #2C3E50;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .clock {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: white;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Marcações das horas */
+        .hour-marks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hour-mark {
+            position: absolute;
+            width: 4px;
+            height: 15px;
+            background: #333;
+            left: 50%;
+            top: 10px;
+            transform-origin: bottom center;
+            transform: translateX(-50%);
+        }
+
+        /* Números das horas */
+        .numbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .number {
+            position: absolute;
+            font-size: 5%;
+            font-weight: bold;
+            color: #333;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Ponteiros */
+        .hand {
+            position: absolute;
+            transform-origin: bottom center;
+            bottom: 50%;
+            left: 50%;
+            border-radius: 10px 10px 0 0;
+            transform: translateX(-50%);
+        }
+
+        .hour-hand {
+            width: 3%;
+            height: 30%;
+            background: #333;
+        }
+
+        .minute-hand {
+            width: 1px;
+            height: 30%;
+            background: #666;
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 50%;
+            background: #e74c3c;
+        }
+
+        /* Centro do relógio */
+        .center {
+            position: absolute;
+            width: 5%;
+            height: 5%;
+            background: #e74c3c;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            border: 2px solid #333;
+        }
+
+        /* Animações dos ponteiros */
+        @keyframes rotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .hour-hand {
+            animation: rotate 43200s linear infinite; /* 12 horas */
+        }
+
+        .minute-hand {
+            animation: rotate 3600s linear infinite; /* 60 minutos */
+        }
+
+        .second-hand {
+            animation: rotate 60s linear infinite; /* 60 segundos */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .container {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 70%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-image {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image .dinheiro{
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: auto;
+            z-index: 1;
+        }
+        .content::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .content::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .hero-image #img {
+            background: url(logo.gif); 
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .hero-image h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .content {
+            padding: 40px;
+            display: flex;
+            background-image: 
+    linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.507) 100%), 
+    url("fundo.webp");
+  
+  /* Ajustes extras para a imagem cobrir bem o espaço */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .content p{
+            width: 100%;
+        }
+        .badge {
+            background: var(--accent);
+            color: var(--text);
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        
+        p {
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+        
+        .benefits {
+            margin: 25px 0;
+        }
+        .benefit-item .items{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .benefit-icon {
+            min-width: 30px;
+            height: 30px;
+            background: rgba(255, 187, 0, 0.404);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .benefit-icon img{
+            height: 20px ;
+            width: auto;
+        }
+        .cta-button1{
+            opacity: 1;
+        }
+        .cta-button2{
+            opacity: 0;
+        }
+        .cta-button1 i,.cta-button2 i{
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        @keyframes dedo {
+            0%{
+                transform: translateX(0px);
+            }
+            50%{
+                transform: translateX(10px);
+            }
+            100%{
+                transform: translateX(0px);
+            }
+        }
+        .cta-button1, .cta-button2{
+            margin-top:10px;
+            display: flex;
+            align-items: center;
+            background: var(--primary);
+            color: rgb(255, 255, 255);
+            padding: 10px 23px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-align: center;
+            top: 0;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(112, 37, 211, 0.3), inset 0px 0px 21px rgba(206, 17, 206, 0.555),inset 0px 0px 11px rgba(0, 0, 0, 0.555);
+            z-index: 10;
+            height: fit-content;
+            animation: pulse 2s infinite;
+            bottom: 12px;
+            overflow: hidden;
+        }
+        @keyframes pulse {
+            0%, 100% {
+            box-shadow: 0 0 0 0 rgba(124, 52, 219, 0.751);
+        }
+
+        50% {
+            box-shadow: 0 0 0 18px rgba(52, 152, 219, 0);
+        }
+        }
+        .cta-button1 span, .cta-button2 span{
+            display: flex;
+            align-items: center;
+        }
+        .cta-button1 span p, .cta-button2 span p{
+            margin-bottom: 0;
+            color: rgb(255, 255, 255);
+        }
+        .cta-button1:hover, .cta-button2:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        .moeda{
+            height: 25px;
+            width: auto;
+        }
+        .cta-button1::after ,.cta-button2::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--dark));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .cta-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--dark));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+        
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+        
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .hero-image{
+            width: 350px;
+            height: auto;
+        }
+        .countdown-item {
+            background: var(--light);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .guarantee {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .guarantee-icon {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .video-fundo{
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        .video-fundo::after{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: flex;
+            background: rgba(0, 0, 0, 0.466);
+        }
+        .video-fundo video{
+            position: absolute;
+            height: 140%;
+            aspect-ratio: 1.91/1;
+        }
+
+                @media (max-width: 1168px) {
+                    .container {
+                        grid-template-columns: 1fr;
+                        max-width: 70%;
+                    }
+                    .hero-image #img{
+                        height: 100%;
+                        width: 100%;
+                        background: url(logo.gif);
+                        background-size: 100% 100%;
+                        background-position: center;
+                        background-repeat: no-repeat;
+
+                    }
+
+                }
+        @media (max-width: 768px) {
+            .cta-button1{
+        }
+        .cta-button2{
+            opacity: 1;
+        }
+            h1{
+                font-size: 2.0rem;
+            }
+            .content {
+                padding: 30px 20px;
+            }
+            .badge{
+                align-self: center;
+                margin-top: 50px;
+            }
+            h1{
+                text-align: center;
+            }
+            .cta-button1 i, .cta-button2 i{
+                font-size: 1.9rem;
+            }
+                .container {
+                    max-width: 100%;
+                    grid-template-columns: 1fr;
+                }
+
+
+                .hero-image{
+                        height: 270px;
+                }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="video-fundo">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="back.webm" type="video/webm">
+        </video>  
+    </div>
+    <div class="container">
+        
+        <div class="content">
+            <img class="hero-image" src="coelho.png"/>
+            <h1 style="text-align: center;">Descobra o novo do entretenimento</h1>
+            <p style="text-align: center;">Nossas Melhores promoções estão aqui</p>
+             <a href="https://ads.vupi.bet.br/tb4c2877" class="cta-button1">
+                <span><i class="fa-solid fa-download"></i> <p>Aproveite Agora!</p></span>
+            </a>
+            <div class="countdown">
+                <div class="countdown-item">🚀 Mostre seu jogo e ganhe respeito nas mesas!</div>
+            </div>
+            <div class="guarantee">
+                <i class="fas fa-lock guarantee-icon"></i>
+                <span>100% seguro</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Animação para o contador (opcional)
+        function animateCountdown() {
+            const items = document.querySelectorAll('.countdown-item');
+            let count = 0;
+            
+            const interval = setInterval(() => {
+                if (count >= 10) {
+                    clearInterval(interval);
+                    return;
+                }
+                
+                items.forEach(item => {
+                    item.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        item.style.transform = 'scale(1)';
+                    }, 200);
+                });
+                
+                count++;
+            }, 2000);
+        }
+        
+        // Inicia a animação quando a página carrega
+        window.addEventListener('load', animateCountdown);
+        
+        // Efeito de flutuação para o ícone do troféu
+
+    </script>
+</body>
+</html>
