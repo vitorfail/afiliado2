@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥Entre na Vupi</title>
-     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -516,6 +516,16 @@
 
         }
 
+        /* Estilo para o status de carregamento */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .loading::after {
+            content: " (carregando...)";
+            font-size: 0.8em;
+        }
+
     </style>
 </head>
 <body>
@@ -530,7 +540,13 @@
             <img class="hero-image" src="coelho.png"/>
             <h1 style="text-align: center;">Descobra o novo do entretenimento</h1>
             <p style="text-align: center;">Nossas Melhores promoções estão aqui</p>
-             <a href="https://ads.vupi.bet.br/tb4c2877" class="cta-button1">Aproveite Agora!</a>
+             <!-- Botão com ID para ser atualizado via JavaScript -->
+             <a id="botaoDinamico" href="https://ads.vupi.bet.br/tb4c2877" class="cta-button1">
+                <span>
+                    <i class="fas fa-rocket"></i>
+                    <p>Aproveite Agora!</p>
+                </span>
+            </a>
             <div class="countdown">
                 <div class="countdown-item">🚀 Mostre seu jogo e ganhe respeito nas mesas!</div>
             </div>
@@ -540,5 +556,104 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Configuração do link dinâmico
+        // ============================================
+        // PASSO 1: Crie uma planilha pública no Google Sheets
+        // PASSO 2: Coloque o link na célula A1
+        // PASSO 3: Publique: Arquivo → Publicar na web → Publicar
+        // PASSO 4: Copie o URL de publicação e cole abaixo:
+        // ============================================
+        const URL_PLANILHA = 'https://docs.google.com/spreadsheets/d/SUA_ID_AQUI/pub?output=csv';
+        // Exemplo: 'https://docs.google.com/spreadsheets/d/1ABC123XYZ/pub?output=csv'
+        // ============================================
+
+        // Função para carregar o link da planilha
+        async function carregarLinkDinamico() {
+            const botao = document.getElementById('botaoDinamico');
+            
+            try {
+                // Adiciona classe de carregamento
+                botao.classList.add('loading');
+                
+                // Faz a requisição para a planilha
+                const resposta = await fetch(URL_PLANILHA);
+                
+                if (!resposta.ok) {
+                    throw new Error('Erro ao carregar a planilha');
+                }
+                
+                const texto = await resposta.text();
+                
+                // Pega a primeira linha (célula A1) e remove espaços
+                const link = texto.split('\n')[0].trim();
+                
+                // Verifica se o link é válido
+                if (link && link.startsWith('http')) {
+                    // Atualiza o href do botão
+                    botao.href = link;
+                    
+                    // Opcional: track de clique para analytics
+                    botao.onclick = function() {
+                        // Pixel do Facebook para conversão
+                        fbq('track', 'Lead');
+                        // Você pode adicionar outros trackers aqui
+                    };
+                    
+                    console.log('Link carregado com sucesso:', link);
+                } else {
+                    throw new Error('Link inválido na planilha');
+                }
+                
+            } catch (erro) {
+                console.error('Erro ao carregar link dinâmico:', erro);
+                
+                // Link de fallback (mantém o original)
+                botao.href = 'https://ads.vupi.bet.br/tb4c2877';
+                
+                // Mostra mensagem de erro no console
+                console.log('Usando link padrão devido ao erro');
+                
+                // Opcional: mostra alerta para o desenvolvedor
+                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    console.warn('Configure a URL_PLANILHA com o link da sua planilha pública do Google Sheets');
+                }
+            } finally {
+                // Remove classe de carregamento
+                botao.classList.remove('loading');
+            }
+        }
+
+        // Carrega o link quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarLinkDinamico();
+            
+            // Opcional: Atualiza automaticamente a cada 5 minutos
+            setInterval(carregarLinkDinamico, 5 * 60 * 1000);
+        });
+
+        // Função auxiliar para ajudar na configuração
+        function mostrarInstrucoes() {
+            console.log(`
+            ============================================
+            INSTRUÇÕES PARA CONFIGURAR O LINK DINÂMICO:
+            ============================================
+            1. Crie uma planilha no Google Sheets
+            2. Na célula A1, cole o link desejado
+            3. Clique em "Arquivo" → "Publicar na web"
+            4. Selecione "Publicar"
+            5. Copie o URL fornecido
+            6. Cole na variável URL_PLANILHA no código
+            7. Teste atualizando a célula A1 da planilha
+            ============================================
+            `);
+        }
+
+        // Chama as instruções se estiver em localhost
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            mostrarInstrucoes();
+        }
+    </script>
 </body>
 </html>
